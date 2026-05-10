@@ -5,7 +5,7 @@ class ItemToPurchase:
         self.item_price = 0.0
         self.item_quantity = 0
 
-    # Print the cost for one item in the format the assignment asks for.
+    # Print the cost for one item.
     def print_item_cost(self):
         total_cost = self.item_price * self.item_quantity
         print(
@@ -15,14 +15,14 @@ class ItemToPurchase:
 
 
 if __name__ == "__main__":
-    # Create two item objects as required by the assignment.
+    # Create two item objects for the shopping cart.
     item1 = ItemToPurchase()
     item2 = ItemToPurchase()
 
     # Store each item object as an element in the shopping cart list.
     cart = [item1, item2]
 
-    # The assignment asks for two items, so we collect exactly two.
+    # Collect item details for each object in the cart.
     for item_number, item in enumerate(cart, 1):
         print(f"Item {item_number}")
         print("Enter the item name:")
