@@ -1,0 +1,22 @@
+# Word documents
+*.docx
+
+# Text files
+*.txt
+
+# macOS files
+.DS_Store
+
+# Common image files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.webp
+*.heic
+*.heif
+*.svg
+*.ico
