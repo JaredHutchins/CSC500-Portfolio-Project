@@ -6,6 +6,21 @@ DEFINE ItemToPurchase class
     SET default quantity to 0
     SET default description to "none"
 
+    DEFINE set_item_details
+        IF item name is not blank
+            UPDATE item name
+        END IF
+        IF item description is not blank
+            UPDATE item description
+        END IF
+        IF item price is greater than 0
+            UPDATE item price
+        END IF
+        IF item quantity is greater than 0
+            UPDATE item quantity
+        END IF
+    END DEFINE
+
     DEFINE print_item_cost
         CALCULATE item total as price times quantity
         DISPLAY item name, quantity, price, and item total
@@ -23,12 +38,14 @@ DEFINE ShoppingCart class
 
     DEFINE add_item
         ADD item to cart item list
+        DISPLAY item name and added message
     END DEFINE
 
     DEFINE remove_item
         FIND item by name
         IF item is found
             REMOVE item from cart item list
+            DISPLAY item name and removed message
         ELSE
             DISPLAY "Item not found in cart. Nothing removed."
         END IF
@@ -38,6 +55,7 @@ DEFINE ShoppingCart class
         FIND item by name
         IF item is found
             UPDATE description, price, and quantity only when new values are not default values
+            DISPLAY each detail that was changed
         ELSE
             DISPLAY "Item not found in cart. Nothing modified."
         END IF
@@ -111,13 +129,16 @@ DEFINE print_menu
         GET required item description
         GET positive item price
         GET positive whole number item quantity
+        CALL set_item_details for the new item
         ADD item to cart
     ELSE IF option is r
         GET required item name
         REMOVE item from cart
     ELSE IF option is c
+        CREATE new ItemToPurchase object
         GET required item name
         GET positive whole number new quantity
+        CALL set_item_details for the item name and new quantity
         MODIFY item quantity
     ELSE IF option is i
         OUTPUT item descriptions

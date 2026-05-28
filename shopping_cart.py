@@ -6,6 +6,20 @@ class ItemToPurchase:
         self.item_quantity = 0
         self.item_description = "none"
 
+    # Update item details only when the new values pass validation.
+    def set_item_details(self, name, description, price, quantity):
+        if name.strip() != "":
+            self.item_name = name.strip()
+
+        if description.strip() != "":
+            self.item_description = description.strip()
+
+        if price > 0:
+            self.item_price = price
+
+        if quantity > 0:
+            self.item_quantity = quantity
+
     # Print the cost for one item.
     def print_item_cost(self):
         total_cost = self.item_price * self.item_quantity
@@ -29,12 +43,14 @@ class ShoppingCart:
     # Add one item object to the cart.
     def add_item(self, item):
         self.cart_items.append(item)
+        print(f"{item.item_name} added to cart.")
 
     # Remove an item from the cart by matching the item name.
     def remove_item(self, item_name):
         for item in self.cart_items:
             if item.item_name == item_name:
                 self.cart_items.remove(item)
+                print(f"{item_name} removed from cart.")
                 return
 
         print("Item not found in cart. Nothing removed.")
@@ -45,10 +61,16 @@ class ShoppingCart:
             if cart_item.item_name == item.item_name:
                 if item.item_description != "none":
                     cart_item.item_description = item.item_description
+                    print(f"{cart_item.item_name} description changed.")
                 if item.item_price != 0:
                     cart_item.item_price = item.item_price
+                    print(f"{cart_item.item_name} price changed to ${item.item_price:g}.")
                 if item.item_quantity != 0:
                     cart_item.item_quantity = item.item_quantity
+                    print(
+                        f"{cart_item.item_name} quantity changed to "
+                        f"{item.item_quantity}."
+                    )
                 return
 
         print("Item not found in cart. Nothing modified.")
@@ -154,10 +176,13 @@ def print_menu(cart):
         if option == "a":
             print("ADD ITEM TO CART")
             item = ItemToPurchase()
-            item.item_name = get_required_text("Enter the item name:\n")
-            item.item_description = get_required_text("Enter the item description:\n")
-            item.item_price = get_positive_number("Enter the item price:\n")
-            item.item_quantity = get_positive_whole_number("Enter the item quantity:\n")
+            item_name = get_required_text("Enter the item name:\n")
+            item_description = get_required_text("Enter the item description:\n")
+            item_price = get_positive_number("Enter the item price:\n")
+            item_quantity = get_positive_whole_number("Enter the item quantity:\n")
+            item.set_item_details(
+                item_name, item_description, item_price, item_quantity
+            )
             cart.add_item(item)
 
         elif option == "r":
@@ -168,8 +193,9 @@ def print_menu(cart):
         elif option == "c":
             print("CHANGE ITEM QUANTITY")
             item = ItemToPurchase()
-            item.item_name = get_required_text("Enter the item name:\n")
-            item.item_quantity = get_positive_whole_number("Enter the new quantity:\n")
+            item_name = get_required_text("Enter the item name:\n")
+            item_quantity = get_positive_whole_number("Enter the new quantity:\n")
+            item.set_item_details(item_name, "none", 0, item_quantity)
             cart.modify_item(item)
 
         elif option == "i":
