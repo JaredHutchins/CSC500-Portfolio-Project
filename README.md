@@ -1,13 +1,13 @@
-# **CSC500 Module 4 Portfolio Milestone**
+# **CSC500 Module 6 Portfolio Milestone**
 
 ---
 
 ## **What This Is:**
 <u></u>
 
-This repository contains my Module 4 Portfolio Milestone for CSC500.
+This repository contains my Module 6 Portfolio Milestone for CSC500.
 
-The program is a small online shopping cart written in Python. It asks the user for two items, stores those items as objects, and then calculates the cost for each item and the total cost for the cart.
+The program builds on the earlier shopping cart milestone. It uses item objects and a shopping cart object to let the user add items, remove items, change item quantities, print item descriptions, and print the full shopping cart total.
 
 ---
 
@@ -15,6 +15,7 @@ The program is a small online shopping cart written in Python. It asks the user 
 <u></u>
 
 - **shopping_cart.py** - Main Python file for the shopping cart program
+- **pseudocode.txt** - Pseudocode for the shopping cart program
 - **README.md**
 
 ---
@@ -23,12 +24,16 @@ The program is a small online shopping cart written in Python. It asks the user 
 <u></u>
 
 - Creates an **ItemToPurchase** class
-- Uses a default constructor
-- Gets the item name, price, and quantity from the user
-- Checks for invalid or negative price and quantity inputs
-- Stores the two item objects in a shopping cart list
-- Prints each item cost
-- Prints the total cart cost
+- Creates a **ShoppingCart** class
+- Gets the customer name and current date from the user
+- Uses a menu to manage the shopping cart
+- Adds items to the shopping cart
+- Removes items from the shopping cart by item name
+- Changes item quantities by item name
+- Prints each item description
+- Prints the full shopping cart total
+- Checks for blank, invalid, or negative user input
+- Keeps running until the user chooses to quit
 
 ---
 
@@ -37,11 +42,12 @@ The program is a small online shopping cart written in Python. It asks the user 
 
 1. Ensure **Python 3** is installed.
 2. Open a terminal in the project folder.
-3. Run the script:
+3. Run the shopping cart program:
    ```bash
    python3 shopping_cart.py
    ```
-4. Enter the requested item information when prompted.
+4. Enter the customer information when prompted.
+5. Choose options from the menu to manage the shopping cart.
 
 ---
 

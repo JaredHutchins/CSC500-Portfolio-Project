@@ -1,0 +1,140 @@
+START
+
+DEFINE ItemToPurchase class
+    SET default name to "none"
+    SET default price to 0
+    SET default quantity to 0
+    SET default description to "none"
+
+    DEFINE print_item_cost
+        CALCULATE item total as price times quantity
+        DISPLAY item name, quantity, price, and item total
+    END DEFINE
+
+    DEFINE print_item_description
+        DISPLAY item name and item description
+    END DEFINE
+END DEFINE
+
+DEFINE ShoppingCart class
+    SET customer name
+    SET current date
+    CREATE empty cart item list
+
+    DEFINE add_item
+        ADD item to cart item list
+    END DEFINE
+
+    DEFINE remove_item
+        FIND item by name
+        IF item is found
+            REMOVE item from cart item list
+        ELSE
+            DISPLAY "Item not found in cart. Nothing removed."
+        END IF
+    END DEFINE
+
+    DEFINE modify_item
+        FIND item by name
+        IF item is found
+            UPDATE description, price, and quantity only when new values are not default values
+        ELSE
+            DISPLAY "Item not found in cart. Nothing modified."
+        END IF
+    END DEFINE
+
+    DEFINE get_num_items_in_cart
+        ADD all item quantities together
+        RETURN total quantity
+    END DEFINE
+
+    DEFINE get_cost_of_cart
+        ADD all item costs together
+        RETURN total cost
+    END DEFINE
+
+    DEFINE print_total
+        DISPLAY customer name and date
+        DISPLAY number of items
+        IF cart is empty
+            DISPLAY "SHOPPING CART IS EMPTY"
+        ELSE
+            DISPLAY each item cost
+            DISPLAY total cost
+        END IF
+    END DEFINE
+
+    DEFINE print_descriptions
+        DISPLAY customer name and date
+        DISPLAY "Item Descriptions"
+        DISPLAY each item description
+    END DEFINE
+END DEFINE
+
+DEFINE get_required_text
+    ASK user for text
+    WHILE text is blank
+        DISPLAY error message
+        ASK user for text again
+    END WHILE
+    RETURN text
+END DEFINE
+
+DEFINE get_positive_number
+    ASK user for number
+    WHILE number is invalid or not positive
+        DISPLAY error message
+        ASK user for number again
+    END WHILE
+    RETURN number
+END DEFINE
+
+DEFINE get_positive_whole_number
+    ASK user for whole number
+    WHILE whole number is invalid or not positive
+        DISPLAY error message
+        ASK user for whole number again
+    END WHILE
+    RETURN whole number
+END DEFINE
+
+DEFINE print_menu
+    DISPLAY menu until user chooses q
+    ASK user for menu option
+    WHILE menu option is invalid
+        DISPLAY error message
+        ASK user for menu option again
+    END WHILE
+
+    IF option is a
+        GET required item name
+        GET required item description
+        GET positive item price
+        GET positive whole number item quantity
+        ADD item to cart
+    ELSE IF option is r
+        GET required item name
+        REMOVE item from cart
+    ELSE IF option is c
+        GET required item name
+        GET positive whole number new quantity
+        MODIFY item quantity
+    ELSE IF option is i
+        OUTPUT item descriptions
+    ELSE IF option is o
+        OUTPUT shopping cart
+    END IF
+END DEFINE
+
+DEFINE main
+    GET required customer name
+    GET required current date
+    DISPLAY customer name
+    DISPLAY current date
+    CREATE shopping cart using customer name and current date
+    CALL print_menu using shopping cart
+END DEFINE
+
+CALL main
+
+END
