@@ -1,13 +1,13 @@
-# **CSC500 Module 6 Portfolio Milestone**
+# **CSC500 Portfolio Project**
 
 ---
 
 ## **What This Is:**
 <u></u>
 
-This repository contains my Module 6 Portfolio Milestone for CSC500.
+This repository contains my Portfolio Project for CSC500.
 
-The program builds on the earlier shopping cart milestone. It uses item objects and a shopping cart object to let the user add items, remove items, change item quantities, print item descriptions, and print the full shopping cart total.
+The program is an online shopping cart written in Python. It uses item objects and a shopping cart object to let the user add items, remove items, change item quantities, print item descriptions, and print the full shopping cart total.
 
 ---
 
@@ -30,6 +30,7 @@ The program builds on the earlier shopping cart milestone. It uses item objects 
 - Adds items to the shopping cart
 - Removes items from the shopping cart by item name
 - Changes item quantities by item name
+- Confirms when items are added, removed, or changed
 - Prints each item description
 - Prints the full shopping cart total
 - Checks for blank, invalid, or negative user input
